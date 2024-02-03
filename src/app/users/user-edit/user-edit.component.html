@@ -1,0 +1,34 @@
+<h3 class="text-2xl font-bold mb-4 text-primary_Blue">Edit</h3>
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="updateUser()"
+  class="space-y-4 max-w-sm mx-auto"
+>
+  <div class="flex flex-col">
+    <label for="name" class="sr-only">First Name</label>
+    <input
+      type="text"
+      name="name"
+      class="border-2 border-gray-200 p-3 rounded-lg focus:outline-none focus:border-primary_Yellow transition-all duration-300"
+      formControlName="name"
+      placeholder="First Name"
+    />
+  </div>
+  <div class="flex items-center">
+    <input
+      type="checkbox"
+      name="approved"
+      formControlName="approved"
+      value="approved"
+      class="form-checkbox h-5 w-5 text-primary_Blue"
+    />
+    <label for="checkbox" class="ml-2">Approved</label>
+  </div>
+
+  <button
+    type="submit"
+    class="gradient-animation text-white font-bold py-3 px-6 rounded transition-all duration-300"
+  >
+    Done
+  </button>
+</form>

@@ -1,0 +1,214 @@
+<div class="w-[100%] h-[46.5rem] flex justify-center mt-[1rem]">
+  <form
+    [formGroup]="registerForm"
+    class="flex flex-row md:justify-center lg:justify-normal rounded-lg bg-black bg-opacity-5 w-[80rem] h-[40rem]"
+  >
+    <div class="flex flex-col justify-center items-center w-[40rem] gap-3">
+      <h3
+        *ngIf="userRole === 'CUSTOMER'"
+        class="font-bold text-lg text-primary_Blue"
+      >
+        {{ "Sign up" | translate }}
+      </h3>
+      <h3
+        *ngIf="userRole === 'ORGANIZER'"
+        class="font-bold text-lg text-primary_Green"
+      >
+        {{ "Sign up" | translate }}
+      </h3>
+      <legend>{{ "Please select your user type:" | translate }}</legend>
+
+      <div
+        class="grid w-[20rem] grid-cols-2 gap-2 rounded-xl bg-gray-200 bg-opacity-40 p-2"
+      >
+        <div>
+          <input
+            type="radio"
+            id="customer"
+            name="role"
+            value="CUSTOMER"
+            formControlName="role"
+            class="peer hidden"
+          />
+          <label
+            for="customer"
+            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary_Blue peer-checked:font-bold peer-checked:text-white"
+            >{{ "Customer" | translate }}</label
+          >
+        </div>
+
+        <div>
+          <input
+            type="radio"
+            id="organizer"
+            name="role"
+            value="ORGANIZER"
+            formControlName="role"
+            class="peer hidden"
+          />
+          <label
+            for="organizer"
+            class="block cursor-pointer select-none rounded-xl p-2 text-center peer-checked:bg-primary_Green peer-checked:font-bold peer-checked:text-white"
+            >{{ "Event Organizer" | translate }}</label
+          >
+        </div>
+      </div>
+
+      <!-- Customer form -->
+      <div
+        *ngIf="userRole === 'CUSTOMER'"
+        class="flex flex-col w-[20rem] gap-2"
+      >
+        <label for="customerFirstName" class="text-primary_Blue">{{
+          "First Name" | translate
+        }}</label>
+        <input
+          type="text"
+          id="customerFirstName"
+          formControlName="name"
+          class="rounded-md bg-transparent border-b-primary_Blue border-b-4"
+        />
+        <label for="customerLastName" class="text-primary_Blue">{{
+          "Last Name" | translate
+        }}</label>
+        <input
+          type="text"
+          id="customerLastName"
+          formControlName="lastName"
+          class="rounded-md bg-transparent border-b-primary_Blue border-b-4"
+        />
+        <label for="customerEmailAddress" class="text-primary_Blue">{{
+          "Email" | translate
+        }}</label>
+        <input
+          type="text"
+          id="customerEmailAddress"
+          formControlName="email"
+          class="rounded-md bg-transparent border-b-primary_Blue border-b-4"
+        />
+        <label for="customerPassword" class="text-primary_Blue">{{
+          "Password" | translate
+        }}</label>
+        <input
+          type="password"
+          id="customerPassword"
+          formControlName="password"
+          class="rounded-md bg-transparent border-b-primary_Blue border-b-4"
+        />
+        <button
+          type="submit"
+          (click)="register()"
+          class="bg-primary_Blue rounded-md p-2 text-white"
+        >
+          {{ "Register" | translate }}
+        </button>
+      </div>
+      <!-- ORGANIZER form -->
+      <div
+        *ngIf="userRole === 'ORGANIZER'"
+        class="flex flex-col w-[20rem] gap-2"
+      >
+        <label for="customerFirstName" class="text-primary_Green">{{
+          "First Name" | translate
+        }}</label>
+        <input
+          type="text"
+          id="name"
+          formControlName="name"
+          class="rounded-md bg-transparent border-b-primary_Green border-b-4"
+        />
+        <label for="customerLastName" class="text-primary_Green">{{
+          "Company Name" | translate
+        }}</label>
+        <input
+          type="text"
+          id="companyName"
+          formControlName="companyName"
+          class="rounded-md bg-transparent border-b-primary_Green border-b-4"
+        />
+        <label for="email" class="text-primary_Green">{{
+          "Email" | translate
+        }}</label>
+        <input
+          type="text"
+          id="organizerEmailAddress"
+          formControlName="email"
+          class="rounded-md bg-transparent border-b-primary_Green border-b-4"
+        />
+        <label for="customerPassword" class="text-primary_Green">{{
+          "Password" | translate
+        }}</label>
+        <input
+          type="password"
+          id="customerPassword"
+          formControlName="password"
+          class="rounded-md bg-transparent border-b-primary_Green border-b-4"
+        />
+        <button
+          type="submit"
+          (click)="register()"
+          class="bg-primary_Green rounded-md p-2 text-white"
+        >
+          {{ "Register" | translate }}
+        </button>
+      </div>
+    </div>
+
+    <div
+      *ngIf="userRole === 'CUSTOMER'"
+      class="lg:w-[40rem] lg:h-auto lg:bg-primary_Blue overflow-hidden flex items-center justify-center"
+    >
+      <h1
+        class="lg:absolute lg:text-white lg:text-4xl lg:font-bold lg:mt-[-4rem] lg:block hidden"
+      >
+        {{ "Welcome" | translate }}
+      </h1>
+      <h1
+        class="lg:absolute lg:text-white lg:text-2xl lg:mt-[1rem] lg:block hidden"
+      ></h1>
+      <div class="grid grid-cols-2 grid-rows-2">
+        <div
+          class="lg:w-[10rem] lg:h-[10rem] lg:rounded-full lg:bg-gradient-to-br lg:from-primary_Blue lg:to-primary_DarkBlue"
+        ></div>
+        <div
+          class="lg:w-[25rem] lg:h-[25rem] lg:rounded-full lg:bg-gradient-to-br lg:from-primary_Blue lg:to-primary_DarkBlue lg:mt-[-12rem]"
+        ></div>
+
+        <div
+          class="lg:w-[25rem] lg:h-[25rem] lg:rounded-tr-full lg:bg-gradient-to-br lg:from-primary_Blue lg:to-primary_DarkBlue"
+        ></div>
+        <div
+          class="lg:w-[5rem] lg:h-[5rem] lg:rounded-full lg:bg-gradient-to-br lg:from-primary_Blue lg:to-primary_DarkBlue lg:ml-[10rem]"
+        ></div>
+      </div>
+    </div>
+    <div
+      *ngIf="userRole === 'ORGANIZER'"
+      class="lg:w-[40rem] lg:h-auto lg:bg-primary_Green overflow-hidden flex items-center justify-center"
+    >
+      <h1
+        class="lg:absolute lg:text-white lg:text-4xl lg:font-bold lg:mt-[-4rem] hidden lg:block"
+      >
+        {{ "Welcome" | translate }}
+      </h1>
+      <h1
+        class="lg:absolute lg:text-white lg:text-2xl lg:mt-[1rem] hidden lg:block"
+      ></h1>
+      <div class="grid grid-cols-2 grid-rows-2">
+        <div
+          class="lg:w-[10rem] lg:h-[10rem] lg:rounded-full lg:bg-gradient-to-br lg:from-primary_Green lg:to-primary_DarkBlue"
+        ></div>
+        <div
+          class="lg:w-[25rem] lg:h-[25rem] lg:rounded-full lg:bg-gradient-to-br lg:from-primary_Green lg:to-primary_DarkBlue lg:mt-[-12rem]"
+        ></div>
+
+        <div
+          class="lg:w-[25rem] lg:h-[25rem] lg:rounded-tr-full lg:bg-gradient-to-br lg:from-primary_Green lg:to-primary_DarkBlue"
+        ></div>
+        <div
+          class="lg:w-[5rem] lg:h-[5rem] lg:rounded-full lg:bg-gradient-to-br lg:from-primary_Green lg:to-primary_DarkBlue lg:ml-[10rem]"
+        ></div>
+      </div>
+    </div>
+  </form>
+</div>

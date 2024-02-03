@@ -1,0 +1,60 @@
+<div class="w-full relative overflow-hidden">
+  <div
+    class="w-4/5 mx-auto flex mt-9 flex-col gap-[3rem] items-center justify-center"
+  >
+    <div
+      class="absolute w-[50rem] h-[50rem] bg-gradient-to-b from-primary_Green to-white rounded-full left-[-40rem] z-[-1]"
+    ></div>
+    <div
+      class="absolute w-[40rem] h-[40rem] bg-gradient-to-br from-primary_Blue to-white rounded-full left-[100rem] top-[-20rem] z-[-1]"
+    ></div>
+    <div
+      class="absolute w-[20rem] h-[20rem] bg-gradient-to-tr from-primary_Red to-white rounded-full left-[10rem] top-[70rem] z-[-1]"
+    ></div>
+    <div
+      class="absolute w-[70rem] h-[70rem] bg-gradient-to-tl from-primary_yellow to-white rounded-full left-[90rem] top-[75rem] z-[-1]"
+    ></div>
+
+    <h1 class="text-4xl font-bold mb-8">{{ "Results" | translate }}</h1>
+    <div
+      class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mx-auto gap-y-12 gap-x-[3rem]"
+    >
+      <app-post-card
+        [post]="post"
+        *ngFor="let post of posts$ | async"
+        class="grid place-items-center"
+      ></app-post-card>
+    </div>
+    <div>
+      <div class="flex justify-center mt-8 space-x-4">
+        <input
+          type="button"
+          (click)="setPage(activePage - 1)"
+          [disabled]="activePage === 1"
+          [class.bg-primary_Blue]="activePage !== 1"
+          [class.bg-gray-400]="activePage === 1"
+          class="px-4 py-2 text-white rounded-md"
+          [value]="'Previous' | translate"
+        />
+        <input
+          type="button"
+          *ngFor="let page of numOfPages$ | async"
+          (click)="setPage(page)"
+          [class.bg-primary_Blue]="page !== activePage"
+          [class.bg-gray-400]="page === activePage"
+          class="px-4 py-2 mx-1 text-white rounded-md"
+          value="{{ page }}"
+        />
+        <input
+          type="button"
+          (click)="setPage(activePage + 1)"
+          [disabled]="activePage === lastPage"
+          [class.bg-primary_Blue]="activePage !== lastPage"
+          [class.bg-gray-400]="activePage === lastPage"
+          class="px-4 py-2 text-white rounded-md"
+          [value]="'Next' | translate"
+        />
+      </div>
+    </div>
+  </div>
+</div>

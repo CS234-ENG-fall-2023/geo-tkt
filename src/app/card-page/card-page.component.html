@@ -1,0 +1,66 @@
+<div
+  *ngIf="activePost$ | async as post; else loading"
+  class="overflow-hidden grid lg:grid-cols-2 gap-8 justify-center items-center relative lg:h-screen h-auto"
+>
+  <div
+    class="absolute h-[30rem] w-[30rem] rounded-full bg-gradient-to-tr from-primary_Green to bg-primary_Blue left-[85%] top-[-25%] z-[-1]"
+  ></div>
+  <div
+    class="absolute h-[40rem] w-[40rem] rounded-full bg-gradient-to-b from-primary_Green to bg-primary_Blue left-[50%] top-[75%] z-[-1]"
+  ></div>
+  <div
+    class="absolute h-[10rem] w-[10rem] rounded-full bg-gradient-to-t from-primary_Green to bg-primary_Blue left-[50%] top-[10%] z-[-1]"
+  ></div>
+
+  <div
+    class="card relative group h-[46rem] w-[31rem] left-1/2 -translate-x-1/2"
+  >
+    <img
+      [src]="post.url"
+      class="shadow-black shadow-lg bg-contain absolute left-1/2 -translate-x-1/2"
+    />
+  </div>
+
+  <div class="flex flex-col gap-6 p-4">
+    <div class="flex flex-col gap-10">
+      <h1 class="text-4xl font-bold">{{ post.eventTitle }}</h1>
+      <p class="text-md">
+        {{ post.description }}
+      </p>
+    </div>
+    <p-accordion [activeIndex]="0">
+      <p-accordionTab [header]="'Availabe Tickets' | translate">
+        <div
+          class="flex flex-col bg-slate-50 rounded-lg shadow-lg p-[3rem] relative justify-center hover:bg-slate-200 transition-all"
+          *ngFor="let tier of post.eventTiers"
+        >
+          <h1 class="font-bold text-lg">{{ tier.tierName }}</h1>
+          <h1 class="font- text-lg">
+            {{ tier.tierLimit }} {{ "tickets left" | translate }}
+          </h1>
+          <h1 class="absolute top-4 right-5 text-2xl font-bold">
+            ${{ tier.tierPrice }}
+          </h1>
+          <button
+            class="p-4 bg-transparent border-2 border-primary_Green transition-all w-[7rem] absolute top-14 right-5 rounded-md hover:bg-primary_Green"
+            (click)="buyTicket(tier.tierName, post._id)"
+          >
+            Buy
+          </button>
+        </div>
+      </p-accordionTab>
+      <p-accordionTab [header]="'Location' | translate">
+        <p>
+          {{ post.eventLocation }}
+        </p>
+      </p-accordionTab>
+      <p-accordionTab [header]="'Date and Time' | translate">
+        <p>
+          {{ formatDate(post.date) }},
+          {{ post.time }}
+        </p>
+      </p-accordionTab>
+    </p-accordion>
+  </div>
+</div>
+<ng-template #loading>Not found...</ng-template>

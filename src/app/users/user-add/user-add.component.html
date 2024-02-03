@@ -1,0 +1,58 @@
+<h3 class="space-y-4 max-w-sm mx-auto text-2xl font-bold m-4 text-primary_Blue">
+  Add a User
+</h3>
+<form
+  [formGroup]="userForm"
+  (ngSubmit)="createUser()"
+  class="space-y-4 max-w-sm mx-auto"
+>
+  <div class="flex flex-col">
+    <label for="name" class="sr-only">First Name</label>
+    <input
+      type="text"
+      class="border-2 border-gray-200 p-3 rounded-lg focus:outline-none focus:border-primary_Yellow transition-all duration-300"
+      formControlName="name"
+      placeholder="enter name"
+    />
+  </div>
+
+  <div class="flex flex-col">
+    <label for="password" class="sr-only">Password</label>
+    <input
+      type="password"
+      class="border-2 border-gray-200 p-3 rounded-lg focus:outline-none focus:border-primary_Yellow transition-all duration-300"
+      formControlName="password"
+      placeholder="Enter password"
+    />
+  </div>
+
+  <div class="flex flex-col">
+    <label for="role_id" class="sr-only">Role</label>
+    <select
+      formControlName="role"
+      class="border-2 border-gray-200 p-3 rounded-lg focus:outline-none focus:border-primary_Yellow transition-all duration-300"
+    >
+      <option value="CUSTOMER">Customer</option>
+      <option value="ORGANIZER">Organizer</option>
+      <option value="ADMIN">Admin</option>
+    </select>
+  </div>
+
+  <div class="flex flex-col">
+    <label for="email" class="sr-only">Email</label>
+    <input
+      type="text"
+      class="border-2 border-gray-200 p-3 rounded-lg focus:outline-none focus:border-primary_Yellow transition-all duration-300"
+      formControlName="email"
+      placeholder="Enter email"
+    />
+  </div>
+
+  <button
+    type="submit"
+    class="gradient-animation text-white font-bold py-3 px-6 rounded transition-all duration-300"
+    (click)="reloadPage()"
+  >
+    Submit
+  </button>
+</form>

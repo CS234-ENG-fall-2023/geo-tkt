@@ -1,0 +1,83 @@
+<div *ngIf="user$ | async as user" class="">
+  <h1>
+    Welcome, {{ user.getDisplayName() }}, representative of
+    {{ user.getCompanyName() }}! id: {{ user.getId() }}
+  </h1>
+</div>
+<div class="flex flex-col items-center justify-center py-2">
+  <div class="overflow-x-auto">
+    <h3 class="mb-4 text-lg font-semibold text-gray-600">
+      {{ "List of Posts" | translate }}
+    </h3>
+    <div
+      class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200"
+    >
+      <table class="min-w-full">
+        <thead>
+          <tr>
+            <th
+              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+              style="width: 150px"
+            >
+              {{ "ID" | translate }}
+            </th>
+            <th
+              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+              style="width: 150px"
+            >
+              {{ "Event Title" | translate }}
+            </th>
+            <th
+              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+              style="width: 150px"
+            >
+              {{ "Category" | translate }}
+            </th>
+            <th
+              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+              style="width: 150px"
+            >
+              {{ "Description" | translate }}
+            </th>
+            <th
+              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+              style="width: 150px"
+            >
+              {{ "Poster URL" | translate }}
+            </th>
+            <th
+              class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider"
+            ></th>
+          </tr>
+        </thead>
+        <tbody class="bg-white">
+          <tr
+            *ngFor="let post of posts$ | async"
+            class="hover:bg-gray-100 group"
+          >
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              {{ post._id }}
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              {{ post.eventTitle }}
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              {{ post.eventType }}
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              {{ post.description }}
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
+              {{ post.url }}
+            </td>
+            <td>
+              <app-posts-edit [post]="post"></app-posts-edit>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<app-posts-add [user]="user$ | async"></app-posts-add>

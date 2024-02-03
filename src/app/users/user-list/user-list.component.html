@@ -1,0 +1,71 @@
+<div class="h-[54rem] flex items-center justify-center gradient-animation">
+  <div
+    class="min-w-full max-w-3xl overflow-hidden shadow-md bg-white rounded-lg"
+  >
+    <div class="gradient-animation text-white p-3">
+      <div class="flex">
+        <div
+          class="flex-1 px-6 py-3 text-xs font-medium uppercase tracking-wider"
+        >
+          ID
+        </div>
+        <div
+          class="flex-1 px-6 py-3 text-xs font-medium uppercase tracking-wider"
+        >
+          First Name
+        </div>
+        <div
+          class="flex-1 px-6 py-3 text-xs font-medium uppercase tracking-wider"
+        >
+          Role
+        </div>
+        <div
+          class="flex-1 px-6 py-3 text-xs font-medium uppercase tracking-wider"
+        >
+          Email
+        </div>
+        <div
+          class="flex-1 px-6 py-3 text-xs font-medium uppercase tracking-wider"
+        >
+          Approved
+        </div>
+        <div
+          class="flex-1 px-6 py-3 text-xs font-medium uppercase tracking-wider"
+        >
+          Actions
+        </div>
+      </div>
+    </div>
+    <div class="overflow-y-auto h-[50rem]">
+      <div
+        *ngFor="let user of users$ | async"
+        class="transition-all duration-300 transform hover:bg-slate-200 hover:bg-opacity-60 flex relative"
+      >
+        <div class="flex-1 px-6 py-4 whitespace-nowrap">{{ user._id }}</div>
+        <div class="flex-1 px-6 py-4 whitespace-nowrap">{{ user.name }}</div>
+
+        <div class="flex-1 px-6 py-4 whitespace-nowrap">{{ user.role }}</div>
+        <div class="flex-1 px-6 py-4 whitespace-nowrap">{{ user.email }}</div>
+        <div class="flex-1 px-6 py-4 whitespace-nowrap">
+          {{ user.approved === false ? "NO" : "YES" }}
+        </div>
+
+        <div class="flex-1 px-6 py-4 whitespace-nowrap">
+          <div *ngIf="selectedUserId === user._id" class="w-full">
+            <app-user-edit [userId]="selectedUserId"></app-user-edit>
+          </div>
+          <a
+            class="text-primary_Blue hover:text-primary_Green font-bold mr-2 transition-colors duration-300"
+            (click)="editUser(user)"
+            >Edit</a
+          >
+          <a
+            class="text-primary_Red hover:text-primary_yellow font-bold transition-colors duration-300"
+            (click)="deleteUser(user)"
+            >Delete</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

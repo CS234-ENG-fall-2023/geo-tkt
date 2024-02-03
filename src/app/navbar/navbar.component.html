@@ -1,0 +1,287 @@
+<div class="grid grid-cols-3 auto items-center shadow-md p-2 bg-white relative">
+  <div class="flex justify-start">
+    <button
+      [routerLink]="''"
+      class="px-4 py-2 text-black rounded-lg duration-150 bg-black bg-opacity-10 hover:bg-opacity-20"
+    >
+      {{ "Home" | translate }}
+    </button>
+  </div>
+
+  <div
+    class="flex flex-row w-full border-2 rounded-lg px-4 py-2 border-black border-opacity-20 relative"
+  >
+    <input
+      #searchQuery
+      [placeholder]="'Search' | translate"
+      type="text"
+      class="w-full h-full bg-transparent text-black outline-none"
+      (keyup.enter)="search(searchQuery.value)"
+    />
+    <div (click)="search(searchQuery.value)" class="cursor-pointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        class="text-black"
+      >
+        <path
+          fill="currentColor"
+          d="M15.5 14h-.79l-.28-.27a6.5 6.5 0 0 0 1.48-5.34c-.47-2.78-2.79-5-5.59-5.34a6.505 6.505 0 0 0-7.27 7.27c.34 2.8 2.56 5.12 5.34 5.59a6.5 6.5 0 0 0 5.34-1.48l.27.28v.79l4.25 4.25c.41.41 1.08.41 1.49 0c.41-.41.41-1.08 0-1.49zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5S14 7.01 14 9.5S11.99 14 9.5 14"
+        />
+      </svg>
+    </div>
+
+    <div
+      class="absolute h-8 w-8 rounded-full bg-gradient-to-tr from-primary_Green to-primary_Blue left-1/4 top-1/4 z-[-1]"
+    ></div>
+    <div
+      class="absolute h-8 w-8 bg-gradient-to-tr from-primary_Yellow to-primary_Red left-1/2 top-1/2 z-[-1]"
+    ></div>
+  </div>
+  <div class="flex justify-end">
+    <p-avatar
+      icon="pi pi-user"
+      class="mr-2 border-2 relative border-black border-opacity-20 rounded-lg cursor-pointer"
+      size="large"
+      (click)="userclicked()"
+      *ngIf="user$ | async as user; else showButton"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+      >
+        <path
+          fill="currentColor"
+          d="M12 4a4 4 0 0 1 4 4a4 4 0 0 1-4 4a4 4 0 0 1-4-4a4 4 0 0 1 4-4m0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4"
+        />
+      </svg>
+      <ul
+        *ngIf="usershow === true"
+        class="grid grid-cols-1 w-40 h-auto absolute z-40 right-0 bg-white top-[3rem] rounded-md shadow-xl items-center border border-gray-300"
+      >
+        <li
+          class="grid place-items-center hover:bg-gray-300 cursor-pointer h-12 border-gray-300 border-b"
+        >
+          <h1 class="text-black text-base text-center">
+            {{ "Welcome" | translate }}, {{ user.getDisplayName() }}!
+          </h1>
+        </li>
+        <li
+          *ngIf="user.isAdmin()"
+          class="grid place-items-center border-b hover:bg-gray-300 cursor-pointer h-12 border-gray-300"
+        >
+          <a
+            class="text-base text-center font-semibold"
+            [routerLink]="['users']"
+            >User Management System</a
+          >
+        </li>
+        <!-- <li> later add my tickets
+          <a
+            class="text-base inline-block bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+            [routerLink]="['posts/list']"
+            role="button"
+            *ngIf="user.isAdmin()"
+            >List of all posts (admin only)</a
+          >
+        </li> -->
+        <li
+          *ngIf="user.isCompany()"
+          class="grid place-items-center border-b hover:bg-gray-300 cursor-pointer h-12 border-gray-300"
+        >
+          <a
+            class="text-base text-center font-semibold"
+            [routerLink]="['company']"
+            >Company dashboard</a
+          >
+        </li>
+        <li
+          class="grid place-items-center hover:bg-gray-300 cursor-pointer h-12 border-b border-gray-300"
+        >
+          <button class="border-gray-300 text-base" (click)="logOut()">
+            Log out
+          </button>
+        </li>
+        <ul class="grid grid-cols-3 h-12">
+          <li
+            (click)="switchLanguage('en')"
+            class="grid place-items-center hover:bg-gray-300 cursor-pointer border-r border-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+            >
+              <mask id="circleFlagsUk0">
+                <circle cx="256" cy="256" r="256" fill="#fff" />
+              </mask>
+              <g mask="url(#circleFlagsUk0)">
+                <path
+                  fill="#eee"
+                  d="m0 0l8 22l-8 23v23l32 54l-32 54v32l32 48l-32 48v32l32 54l-32 54v68l22-8l23 8h23l54-32l54 32h32l48-32l48 32h32l54-32l54 32h68l-8-22l8-23v-23l-32-54l32-54v-32l-32-48l32-48v-32l-32-54l32-54V0l-22 8l-23-8h-23l-54 32l-54-32h-32l-48 32l-48-32h-32l-54 32L68 0z"
+                />
+                <path
+                  fill="#0052b4"
+                  d="M336 0v108L444 0Zm176 68L404 176h108zM0 176h108L0 68ZM68 0l108 108V0Zm108 512V404L68 512ZM0 444l108-108H0Zm512-108H404l108 108Zm-68 176L336 404v108z"
+                />
+                <path
+                  fill="#d80027"
+                  d="M0 0v45l131 131h45zm208 0v208H0v96h208v208h96V304h208v-96H304V0zm259 0L336 131v45L512 0zM176 336L0 512h45l131-131zm160 0l176 176v-45L381 336z"
+                />
+              </g>
+            </svg>
+          </li>
+          <li
+            (click)="[switchLanguage('ge')]"
+            class="grid place-items-center hover:bg-gray-300 cursor-pointer border-r border-gray-300"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+            >
+              <mask id="circleFlagsGe0">
+                <circle cx="256" cy="256" r="256" fill="#fff" />
+              </mask>
+              <g mask="url(#circleFlagsGe0)">
+                <path
+                  fill="#eee"
+                  d="M0 0h224l32 32l32-32h224v224l-32 32l32 32v224H288l-32-32l-32 32H0V288l32-32l-32-32Z"
+                />
+                <path
+                  fill="#d80027"
+                  d="M224 0v224H0v64h224v224h64V288h224v-64H288V0zm-96 96v32H96v32h32v32h32v-32h32v-32h-32V96zm224 0v32h-32v32h32v32h32v-32h32v-32h-32V96zM128 320v32H96v32h32v32h32v-32h32v-32h-32v-32zm224 0v32h-32v32h32v32h32v-32h32v-32h-32v-32z"
+                />
+              </g>
+            </svg>
+          </li>
+          <li
+            (click)="[switchLanguage('ru')]"
+            class="grid place-items-center hover:bg-gray-300 cursor-pointer"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+            >
+              <mask id="circleFlagsRu0">
+                <circle cx="256" cy="256" r="256" fill="#fff" />
+              </mask>
+              <g mask="url(#circleFlagsRu0)">
+                <path
+                  fill="#0052b4"
+                  d="M512 170v172l-256 32L0 342V170l256-32z"
+                />
+                <path fill="#eee" d="M512 0v170H0V0Z" />
+                <path fill="#d80027" d="M512 342v170H0V342Z" />
+              </g>
+            </svg>
+          </li>
+        </ul>
+      </ul>
+    </p-avatar>
+    <ng-template #showButton>
+      <div class="flex justify-end">
+        <button
+          class="px-4 py-2 text-black rounded-lg duration-150 bg-black bg-opacity-10 hover:bg-opacity-20"
+          [routerLink]="['auth/login']"
+        >
+          {{ "Log in" | translate }}
+        </button>
+        <ul class="grid grid-cols-3 h-12">
+          <li
+            (click)="switchLanguage('en')"
+            class="grid place-items-center hover:bg-gray-300 cursor-pointer p-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+            >
+              <mask id="circleFlagsUk0">
+                <circle cx="256" cy="256" r="256" fill="#fff" />
+              </mask>
+              <g mask="url(#circleFlagsUk0)">
+                <path
+                  fill="#eee"
+                  d="m0 0l8 22l-8 23v23l32 54l-32 54v32l32 48l-32 48v32l32 54l-32 54v68l22-8l23 8h23l54-32l54 32h32l48-32l48 32h32l54-32l54 32h68l-8-22l8-23v-23l-32-54l32-54v-32l-32-48l32-48v-32l-32-54l32-54V0l-22 8l-23-8h-23l-54 32l-54-32h-32l-48 32l-48-32h-32l-54 32L68 0z"
+                />
+                <path
+                  fill="#0052b4"
+                  d="M336 0v108L444 0Zm176 68L404 176h108zM0 176h108L0 68ZM68 0l108 108V0Zm108 512V404L68 512ZM0 444l108-108H0Zm512-108H404l108 108Zm-68 176L336 404v108z"
+                />
+                <path
+                  fill="#d80027"
+                  d="M0 0v45l131 131h45zm208 0v208H0v96h208v208h96V304h208v-96H304V0zm259 0L336 131v45L512 0zM176 336L0 512h45l131-131zm160 0l176 176v-45L381 336z"
+                />
+              </g>
+            </svg>
+          </li>
+          <li
+            (click)="switchLanguage('ge')"
+            class="grid place-items-center hover:bg-gray-300 cursor-pointer p-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+            >
+              <mask id="circleFlagsGe0">
+                <circle cx="256" cy="256" r="256" fill="#fff" />
+              </mask>
+              <g mask="url(#circleFlagsGe0)">
+                <path
+                  fill="#eee"
+                  d="M0 0h224l32 32l32-32h224v224l-32 32l32 32v224H288l-32-32l-32 32H0V288l32-32l-32-32Z"
+                />
+                <path
+                  fill="#d80027"
+                  d="M224 0v224H0v64h224v224h64V288h224v-64H288V0zm-96 96v32H96v32h32v32h32v-32h32v-32h-32V96zm224 0v32h-32v32h32v32h32v-32h32v-32h-32V96zM128 320v32H96v32h32v32h32v-32h32v-32h-32v-32zm224 0v32h-32v32h32v32h32v-32h32v-32h-32v-32z"
+                />
+              </g>
+            </svg>
+          </li>
+          <li
+            (click)="switchLanguage('ru')"
+            class="grid place-items-center hover:bg-gray-300 cursor-pointer p-2"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 512 512"
+            >
+              <mask id="circleFlagsRu0">
+                <circle cx="256" cy="256" r="256" fill="#fff" />
+              </mask>
+              <g mask="url(#circleFlagsRu0)">
+                <path
+                  fill="#0052b4"
+                  d="M512 170v172l-256 32L0 342V170l256-32z"
+                />
+                <path fill="#eee" d="M512 0v170H0V0Z" />
+                <path fill="#d80027" d="M512 342v170H0V342Z" />
+              </g>
+            </svg>
+          </li>
+        </ul>
+      </div>
+    </ng-template>
+  </div>
+
+  <div
+    class="absolute h-8 w-8 rounded-full bg-gradient-to-tr from-primary_Yellow to-primary_Red left-[20%] top-[-10%] z-[-1]"
+  ></div>
+  <div
+    class="absolute h-8 w-8 bg-gradient-to-tr from-primary_Red to-primary_Yellow left-[75%] top-[40%] z-[-1]"
+  ></div>
+</div>

@@ -1,0 +1,140 @@
+<div class="opacity-0 group-hover:opacity-100"></div>
+<div class="card flex justify-content-center">
+  <p-button (click)="showDialog()">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <g
+        fill="none"
+        stroke="currentColor"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+      >
+        <path d="M7 7H6a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2v-1" />
+        <path d="M20.385 6.585a2.1 2.1 0 0 0-2.97-2.97L9 12v3h3zM16 5l3 3" />
+      </g>
+    </svg>
+  </p-button>
+  <p-dialog
+    [header]="'Add a new event' | translate"
+    [(visible)]="visible"
+    [modal]="true"
+    [style]="{ width: '50rem' }"
+    [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+    [draggable]="false"
+  >
+    <form [formGroup]="postEdit" class="space-y-4">
+      <div class="flex flex-col">
+        <label for="eventTitle" class="mb-2 font-semibold text-gray-700">{{
+          "Event Title" | translate
+        }}</label>
+        <input type="text" formControlName="eventTitle" pInputText />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="eventType" class="mb-2 font-semibold text-gray-700">{{
+          "Category" | translate
+        }}</label>
+        <input type="text" formControlName="eventType" pInputText />
+      </div>
+
+      <div>
+        <label for="date" class="mb-2 font-semibold text-gray-700">{{
+          "Date" | translate
+        }}</label>
+        <br />
+        <p-calendar formControlName="date" appendTo="body"></p-calendar>
+      </div>
+      <div class="flex flex-col">
+        <label for="time" class="mb-2 font-semibold text-gray-700">{{
+          "Time" | translate
+        }}</label>
+        <input pInputText formControlName="time" />
+      </div>
+      <div class="flex flex-col">
+        <label for="time" class="mb-2 font-semibold text-gray-700">{{
+          "Location" | translate
+        }}</label>
+        <input pInputText formControlName="eventLocation" />
+      </div>
+      <div class="flex flex-col">
+        <label for="description" class="mb-2 font-semibold text-gray-700">{{
+          "Description" | translate
+        }}</label>
+        <input type="text" formControlName="description" pInputText />
+      </div>
+
+      <div class="flex flex-col">
+        <label for="posterUrl" class="mb-2 font-semibold text-gray-700">{{
+          "Poster URL" | translate
+        }}</label>
+        <input type="text" formControlName="url" pInputText />
+      </div>
+      <div formArrayName="eventTiers">
+        <h1 class="mb-2 font-semibold text-gray-700">
+          {{ "Tiers" | translate }}
+        </h1>
+        <div
+          *ngFor="let tier of eventTiers.controls; let i = index"
+          [formGroupName]="i"
+        >
+          <input
+            type="text"
+            formControlName="tierName"
+            [placeholder]="'Tier Name' | translate"
+            pInputText
+          />
+          <input
+            type="number"
+            formControlName="tierPrice"
+            [placeholder]="'Tier Price' | translate"
+            pInputText
+          />
+          <input
+            type="number"
+            formControlName="tierLimit"
+            [placeholder]="'Tier Price' | translate"
+            pInputText
+          />
+          <p-button
+            *ngIf="eventTiers.controls.length > 1"
+            (click)="removeTier(i)"
+            label="Remove tier "
+            [outlined]="true"
+            severity="danger"
+          ></p-button>
+        </div>
+        <p-button
+          (click)="addTier()"
+          severity="info"
+          [label]="'Add a tier' | translate"
+        ></p-button>
+      </div>
+    </form>
+    <ng-template pTemplate="footer">
+      <p-button
+        (click)="visible = false"
+        [label]="'Cancel' | translate"
+        class="font-normal"
+        severity="secondary"
+        [outlined]="true"
+      ></p-button>
+      <p-button
+        (click)="[(visible = false), deletePost()]"
+        [label]="'Delete' | translate"
+        class="font-normal"
+        severity="danger"
+      ></p-button>
+      <p-button
+        (click)="[(visible = false), updatePost()]"
+        [label]="'Edit Post' | translate"
+        pAutoFocus
+        [autofocus]="true"
+      ></p-button>
+    </ng-template>
+  </p-dialog>
+</div>

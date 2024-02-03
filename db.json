@@ -1,0 +1,46 @@
+{
+  "users": [
+    {
+      "id": 2,
+      "name": "Jane Doe",
+      "email": "a@a.com",
+      "password": "a",
+      "role": "CUSTOMER",
+      "token": "gay"
+    },
+    {
+      "id": 3,
+      "name": "g",
+      "email": "1@1.com",
+      "password": "1",
+      "role": "ORGANIZER",
+      "token": "gay"
+    },
+    {
+      "id": 4,
+      "name": "g",
+      "email": "nerdy.cheeper@gmail.com",
+      "password": "1",
+      "role": "ORGANIZER",
+      "token": "gay"
+    }
+  ],
+  "events": [
+    {
+      "id": 1,
+      "eventTitle": "Post 1",
+      "description": "description 1",
+      "category": "gayer",
+      "posterUrl": "https://picsum.photos/200/300",
+      "activeStatus": true
+    },
+    {
+      "id": 2,
+      "eventTitle": "Post 2",
+      "description": "description 2",
+      "category": "gay",
+      "posterUrl": "https://picsum.photos/200/300",
+      "activeStatus": true
+    }
+  ]
+}

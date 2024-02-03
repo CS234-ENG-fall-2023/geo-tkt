@@ -1,0 +1,131 @@
+<app-image-slider />
+<!-- section -->
+<div class="relative overflow-hidden">
+  <div class="max-w-md mx-auto space-y-6">
+    <h2 class="flex flex-row flex-nowrap items-center my-8">
+      <span
+        class="flex-grow block border-t border-black"
+        aria-hidden="true"
+        role="presentation"
+      ></span>
+      <span
+        class="flex-none block mx-4 px-4 py-2.5 text-xs leading-none font-medium uppercase bg-primary_Blue text-white"
+      >
+        {{ "Popular Categories" | translate }}
+      </span>
+      <span
+        class="flex-grow block border-t border-black"
+        aria-hidden="true"
+        role="presentation"
+      ></span>
+    </h2>
+  </div>
+
+  <div
+    class="flex flex-col items-center justify-center w-full h-auto text-start gap-[3rem] p-4"
+  >
+    <div class="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+      <app-cards
+        [imageSrc]="'/assets/image/movie.png'"
+        [heading]="'⠀MOVIES' | translate"
+        (click)="filterCategory('MOVIE')"
+        class="hover:shadow-2xl hover:shadow-orange-500"
+      ></app-cards>
+      <app-cards
+        [imageSrc]="'../../assets/image/sport.jpg'"
+        [heading]="'⠀SPORTS' | translate"
+        (click)="filterCategory('SPORTS')"
+        class="hover:shadow-2xl hover:shadow-blue-500"
+      ></app-cards>
+      <app-cards
+        [imageSrc]="'../../assets/image/concert.jpg'"
+        [heading]="'CONCERTS' | translate"
+        (click)="filterCategory('CONCERT')"
+        class="hover:shadow-2xl hover:shadow-purple-500"
+      ></app-cards>
+    </div>
+  </div>
+  <!-- ------------------------------------------------------------------- -->
+  <div
+    class="absolute top-0 -left-4 w-72 h-72 bg-primary_yellow rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob z-[-1]"
+  ></div>
+  <div
+    class="absolute top-0 -right-4 w-72 h-72 bg-primary_Green rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000 z-[-1]"
+  ></div>
+  <div
+    class="absolute -bottom-32 left-20 w-72 h-72 bg-primary_Green rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000 z-[-1]"
+  ></div>
+  <!-- ------------------------------------------------------------------- -->
+
+  <!-- ------------------------------------------------------------------- -->
+  <div
+    class="absolute top-0 -left-4 w-72 h-72 bg-primary_yellow rounded-full mix-blend-multiply filter blur-xl opacity-50 animate-blob z-[-1]"
+  ></div>
+
+  <div
+    class="absolute bottom-0 right-4 w-72 h-72 bg-primary_Blue rounded-full mix-blend-multiply filter blur-xl opacity-80 animate-blob animation-delay-2000 z-[-1]"
+  ></div>
+
+  <div
+    class="absolute -bottom-32 right-20 w-72 h-72 bg-primary_Red rounded-full mix-blend-multiply filter blur-xl opacity-60 animate-blob animation-delay-4000 z-[-1]"
+  ></div>
+
+  <div class="max-w-md mx-auto space-y-6">
+    <h2 class="flex flex-row flex-nowrap items-center my-8">
+      <span
+        class="flex-grow block border-t border-black"
+        aria-hidden="true"
+        role="presentation"
+      ></span>
+
+      <span
+        (click)="filterCategory('ALL')"
+        class="cursor-pointer flex-none block mx-4 px-4 py-2.5 text-xs leading-none font-medium uppercase bg-primary_Blue text-white"
+      >
+        {{ "Or browse all posts" | translate }}
+      </span>
+      <span
+        class="flex-grow block border-t border-black"
+        aria-hidden="true"
+        role="presentation"
+      ></span>
+    </h2>
+  </div>
+  <!-- ------------------------------------------------------------------- -->
+  <!-- <div class="container mx-auto p-6">
+    <div class="bg-gray-200 p-6 rounded-lg shadow-lg">
+      <h1 class="text-3xl font-semibold mb-2 text-gray-700">Welcome</h1>
+      <p class="text-base mb-4 text-gray-600">
+        Please choose an option to test
+      </p>
+      <hr class="my-4" />
+      <ul class="space-y-4">
+        <li>
+          <a
+            class="text-base inline-block bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+            [routerLink]="['users']"
+            role="button"
+            >User Management System (admin only)</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-base inline-block bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+            [routerLink]="['posts/list']"
+            role="button"
+            >List of all posts (admin only)</a
+          >
+        </li>
+        <li>
+          <a
+            class="text-base inline-block bg-green-500 hover:bg-green-700 text-white font-semibold py-2 px-4 rounded"
+            [routerLink]="['company']"
+            role="button"
+            >Company dashboard</a
+          >
+        </li>
+      </ul>
+    </div>
+  </div> -->
+</div>
+<app-footer></app-footer>

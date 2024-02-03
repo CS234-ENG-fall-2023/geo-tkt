@@ -1,0 +1,21 @@
+@keyframes swipeInOut {
+  0% {
+    transform: translateZ(0); /* Add this line */
+    transform: translateX(80%);
+    opacity: 1;
+ }
+  50% {
+    transform: translateZ(0); /* And this line */
+    transform: translateX(80%);
+    opacity: 0;
+ }
+  100% {
+    transform: translateZ(0); /* And this line */
+    transform: translateX(0);
+    opacity: 1;
+ }
+}
+  div[data-carousel-item] {
+    animation: swipeInOut 0.3s ease-in-out;
+    will-change: transform; /* Add this line */
+   }
