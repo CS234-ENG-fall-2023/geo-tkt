@@ -1,4 +1,3 @@
-Trello Board
 
 To run project first run `npm install` both in the root folder of the project and in back-end folder.
 Then, back in root folder run `npm run dev`,
@@ -7,14 +6,12 @@ It will run back-end and front-end same time. Make sure concurrently is installe
 Admins/Companies can't buy tickets.   
 
 
-You are building an online ticket-selling platform. The platform has three types of users:
+We have built an online ticket-selling platform using Angular, Redux and Node.js as back-end. 
+The platform has three types of users:
 
     Admins - managing the platform
     Event organizers - event organizing company representatives, selling event tickets on the platform
     Customers - users buying event tickets
-
-The application should work in all major web browsers (chrome, safari, firefox, edge).
-Initially, there is a single admin user.
 
 Admin users manage event organizer companies registered on the platform via the companies management page. On the management page list of currently registered companies is displayed. Admin users can temporarily block the company and later reactivate it if required. Events placed by blocked companies are not visible to customers. All newly registered companies require initial approval by the admin, which is also done on this page.
 
@@ -28,9 +25,6 @@ Customers (buyers) can register on the platform to buy tickets for different eve
 
 General notes:
 The landing page contains registration and sign-in page links for all types of users.
-The application should contain a header, footer, and navigation menu.
 The website header should display a name with greeting text and a signout button for an authenticated user.
 After signing in, the user is navigated to the home page, which has a dashboard with useful links and information.
-All lists containing potentially more than ten items should use paging.
-All forms, except popups, should be linkable (bookmarkable).
-All descriptions may include formatted text and require a WYSIWYG editor.
+All lists containing potentially more than ten items use paging.
